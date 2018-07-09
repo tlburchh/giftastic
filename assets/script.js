@@ -3,13 +3,24 @@ var gifs = ["Thunder Cats", "Silver Hawks", "Transformers", "M.A.S.K."]
 function displayGif() {
     var gif = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=2HJHZnfl6qLIKPmYKooOm9pFucMg7Gl5&q=" +
-    gifs + "&limit=10&offset=0&lang=en";
+    gif + "&limit=10&offset=0&lang=en";
 
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function(data) {
-        console.log(data)
+    }).then(function(response) {
+        console.log(response)
+
+        var gifDiv =  $("<div class='gif'>");
+        for (var j=0; j <= 9; j++){
+        // create element to hold image
+        var imgURL = response.data[j].images.downsized_still
+        ;
+        };
+        var image = $("<img>").attr("src", imgURL);
+        gifDiv.append(image);
+
+        $("#gif-view").prepend(gifDiv);
     });
 }
 // creating buttons for each of the gif topics
