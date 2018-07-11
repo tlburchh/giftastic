@@ -13,34 +13,46 @@ function displayGif() {
 
         var gifDiv =  $("<div class='gif'>");
         for (var j=0; j <= 9; j++){
-        // create element to hold image
-        var imgURL = {dataStill: response.data[j].images.downsized_still.url,
-                     dataAnimate: response.data[j].images.downsized.url,
-                     dataState: "still",
-                     class: "gifClass"}
-        
 
-        var image = $("<img>").attr("src", imgURL.dataAnimate);
-        gifDiv.append(image);
-        console.log(image);
+            // rating
+        var rating = response.data[j].rating;
+
+        var p = $("<p>").text("Rating: " + rating);
+        // create element to hold image
+
+        var still = response.data[j].images.downsized_still.url;
+        var animated = response.data[j].images.downsized.url;
+
+        var gifImage = $("<img>");
+
+        gifImage.attr("src", still);
+        gifImage.attr("data-still", still);
+        gifImage.attr("data-animate", animated);
+        gifImage.attr("data-state", "still");
+        gifImage.addClass("gif-image");
+
+        gifDiv.append(p);
+        gifDiv.append(gifImage)
         
-        $(".gifClass").on("click", function(){
-            var gifState = $(this).attr(imgURL.dataState)
-    
-            if (gifState === "still"){
-                $(this).attr("src", $(this).attr(imgURL.dataAnimate));
-                $(this).attr(imgURL.dataState, "animate");
-            } else {
-              $(this).attr("src", $(this).attr(imgURL.dataStill));
-                $(this).attr(imgURL.dataState, "still");
-            }
-        });
     };
         $("#gif-view").empty();
         $("#gif-view").prepend(gifDiv);
 
     });
 }
+        $(document).on("click",".gif-image", function(){
+            var gifState = $(this).attr("data-state")
+    
+            if (gifState === "still"){
+                $(this).attr("src", $(this).attr("data-animate"));
+                $(this).attr("data-state", "animate");
+            } else {
+              $(this).attr("src", $(this).attr("data-still"));
+                $(this).attr("data-state", "still");
+                console.log(gifState);
+                // console.log(gifClass);
+            }
+        });
 
 // creating buttons for each of the gif topics
 function renderButtons() {
