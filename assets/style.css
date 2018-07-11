@@ -1,0 +1,26 @@
+.gif-btn,
+#add-gif,
+label{
+    color: green;
+    background-color: aqua;
+    border-radius: 5px;
+    margin: 5px;
+    border: 1px;
+    font-family: 'Quantico', sans-serif;
+    /* text-align: center */
+    
+
+}
+body{
+    background-image: url("https://thumbs.dreamstime.com/b/retro-s-seamless-pattern-background-vintage-memphis-fashion-style-illustration-ideal-fabric-design-paper-print-website-57384482.jpg");
+}
+h1{
+    color: rgb(0, 0, 0);
+    font-size: 70px;
+    text-align: center;
+    font-family: 'Quantico', sans-serif;
+    /* border: 3px black; */
+}
+.card{
+opacity: .75;
+}
